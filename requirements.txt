@@ -1,0 +1,15 @@
+transformers  # text+image generation
+diffusers     # image generation
+torch         # DL backend (PyTorch)
+pytest        # unit testing framework
+locust        # load testing
+evaluate      # official metrics (rouge, bleu, etc)
+flake8        # code linting (quality check)
+numpy         # numeric operations
+pillow        # image I/O for working with images
+accelerate    # multi-GPU training helper
+absl-py       # needed for rouge metric
+rouge-score   # needed for rouge metric
+nltk          # needed for BLEU/ROUGE tokenization
+fastapi         # for dummy server (API serving)
+uvicorn         # ASGI server to run FastAPI
