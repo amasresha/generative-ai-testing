@@ -10,7 +10,8 @@ jobs:
   lint-and-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -21,26 +22,36 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install black flake8 pytest locust evaluate
 
-      - name: Lint code
+      - name: Format code (Black)
+        run: black src tests
+
+      - name: Lint code (Flake8)
         run: flake8 src tests
 
-      - name: Run pytest
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
+
+      - name: Run unit tests (Pytest)
         run: pytest --maxfail=1 --disable-warnings -q
 
   load-test:
     needs: lint-and-test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
-      - name: Install Locust
-        run: pip install locust
+      - name: Install dependencies for load test
+        run: |
+          python -m pip install --upgrade pip
+          pip install locust
 
-      - name: Run load test
+      - name: Run load test (Locust)
         run: locust --headless -u 10 -r 2 -t 15s -f tests/test_load.py
