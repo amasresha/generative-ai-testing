@@ -1,6 +1,8 @@
 ```markdown
 # Generative AI Testing Framework
 
+![CI](https://github.com/amasresha/generative-ai-testing/actions/workflows/ci.yml/badge.svg)
+
 This project provides a complete lightweight **testing framework** for validating **Generative AI systems** (text and image generation).
 
 It covers **functional**, **quality**, **bias**, **performance**, and **load** testing — with CI/CD support using GitHub Actions.

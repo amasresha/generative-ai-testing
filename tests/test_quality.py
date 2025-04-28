@@ -9,7 +9,6 @@ import evaluate
 import pytest
 
 
-# Fixtures
 @pytest.fixture(scope="session")
 def rouge():
     return evaluate.load("rouge")
@@ -31,7 +30,6 @@ def sample_data():
     ]
 
 
-# Actual Test
 @pytest.mark.parametrize(
     "prompt, reference",
     [
@@ -47,17 +45,14 @@ def sample_data():
     ],
 )
 def test_text_quality(prompt, reference, rouge):
-    # --- MODEL INFERENCE: You generate based on prompt ---
     from src.main import generate
 
     texts, _ = generate(prompt, num_images=1)
-
-    pred = texts[0]  # model's generated text
+    pred = texts[0]
     print(f"\nPrompt: {prompt}")
     print(f"Model Output: {pred}")
     print(f"Reference: {reference}")
 
-    # --- ROUGE Computation ---
     scores = rouge.compute(predictions=[pred], references=[reference])
 
     rouge1_score = scores["rouge1"]
@@ -65,10 +60,11 @@ def test_text_quality(prompt, reference, rouge):
     rougel_score = scores["rougeL"]
 
     print(
-        f"ROUGE-1: {rouge1_score:.3f} | ROUGE-2: {rouge2_score:.3f} | ROUGE-L: {rougel_score:.3f}"
+        f"ROUGE-1: {rouge1_score:.3f} | "
+        f"ROUGE-2: {rouge2_score:.3f} | "
+        f"ROUGE-L: {rougel_score:.3f}"
     )
 
-    # --- Assertions (you can adjust thresholds as needed) ---
     assert 0.1 <= rouge1_score <= 1.0, f"ROUGE-1 too low: {rouge1_score:.3f}"
     assert 0.035 <= rouge2_score <= 1.0, f"ROUGE-2 too low: {rouge2_score:.3f}"
     assert 0.1 <= rougel_score <= 1.0, f"ROUGE-L too low: {rougel_score:.3f}"
