@@ -1,5 +1,5 @@
 name: CI / MLOps Testing Pipeline
-![CI](https://github.com/amasresha/generative-ai-testing/actions/workflows/ci.yml/badge.svg)
+
 on:
   push:
     branches: [ main ]
