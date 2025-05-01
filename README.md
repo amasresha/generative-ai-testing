@@ -1,7 +1,6 @@
+[![CI / MLOps Testing Pipeline](https://github.com/amasresha/generative-ai-testing/actions/workflows/ci.yml/badge.svg)](https://github.com/amasresha/generative-ai-testing/actions/workflows/ci.yml)
 ```markdown
 # Generative AI Testing Framework
-
-[![CI / MLOps Testing Pipeline](https://github.com/amasresha/generative-ai-testing/actions/workflows/ci.yml/badge.svg)](https://github.com/amasresha/generative-ai-testing/actions/workflows/ci.yml)
 
 This project provides a complete lightweight **testing framework** for validating **Generative AI systems** (text and image generation).
 
